@@ -1,0 +1,13 @@
+docker build -t flower-app:latest
+
+docker run --rm   --name flower-server   --network flower-net   -p 8080:8080   flower-app:latest   python server_app.py
+
+docker run --rm   --name flower-client-0   --network flower-net   flower-app:latest   python client_app.py 0 flower-server
+docker run --rm   --name flower-client-1   --network flower-net   flower-app:latest   python client_app.py 1 flower-server
+
+
+1 ROUND: TRaining locally -> Everyone sents the weight to the server -> The server does the average of the weights -> The server sents the weights to all the clients.
+
+2 ROUND: TRaining locally -> Everyone sents the weight to the server -> The server does the average of the weights -> The server sents the weights to all the clients.
+
+3 ROUND: TRaining locally -> Everyone sents the weight to the server -> The server does the average of the weights -> The server sents the weights to all the clients.
