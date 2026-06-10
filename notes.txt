@@ -9,3 +9,10 @@ docker run --rm   --name flower-client-1   --network flower-net   flower-app:lat
 ssh -N -L 0.0.0.0:8080:127.0.0.1:8080 ncuser@10.191.44.101
 
 sudo docker run --rm   --name flower-client-0   --add-host=host.docker.internal:host-gateway   flower-app:latest   python client_app.py 0 host.docker.internal
+
+
+sudo docker run --rm \
+  --name flower-client-0 \
+  --network host \
+  flower-app:latest \
+  python client_app.py 0 127.0.0.1
