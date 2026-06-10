@@ -16,3 +16,6 @@ sudo docker run --rm \
   --network host \
   flower-app:latest \
   python client_app.py 0 127.0.0.1
+
+
+sudo ufw allow 8080/tcp
