@@ -25,3 +25,6 @@ sudo docker run --rm \
   --name flower-client-1 \
   flower-app:latest \
   python client_app.py 0 100.115.119.86
+
+
+sudo iptables -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
