@@ -1,5 +1,7 @@
 # CESI_Test_FL_In_Nukes
 
+### Setting the stage
+
 **docker build -t flower-app:latest .**
 
 If an error happens that says the docker daemon is deactivated or that cannot find a running docker you run:
@@ -12,12 +14,35 @@ and if it says deactivate you run
 
 After that try to create the docker image again
 
+You need to create in the server and in all the client the network door for docker 
+
+**sudo docker network create --driver bridge -o "com.docker.network.driver.mtu=1280" flower-net**
+
+If you have already create something with the same name and you want to delete it is the command
+
+**sudo docker network rm flower-net**
+
+You need also to install and use the Tailscale. We do that so that the computers can be used here. All the computers need to be on the same account and run the following commands 
+
+**sudo pacman -Syu tailscale**
+**sudo systemctl enable --now tailscaled**
+
+The following command will appear a link, go to this and make login
+
+**sudo tailscale up**
+
+With the following command you can see the ip
+
+**tailscale ip -4**
+
+-----------------------------------------
+### Commands to run the server and clients
+
 The following command is to run the server. In the server computer.
 
 **docker run --rm   --name flower-server   --network flower-net   -p 8080:8080   flower-app:latest   python server_app.py**
 
-
-The following commands should be run in the different computers 
+The following commands should be run in the different computers the ip in the last part of each command should change to the ip of the server. Hit the command tailscale in the server take the ip and change it here.
 
 Client 1:
 
