@@ -12,21 +12,21 @@ and if it says deactivate you run
 
 After that try to create the docker image again
 
+The following command is to run the server. In the server computer.
 
 **docker run --rm   --name flower-server   --network flower-net   -p 8080:8080   flower-app:latest   python server_app.py**
 
-The following command is to create the tunel between the client and the server through ssh
-
-**ssh -N -L 0.0.0.0:8080:127.0.0.1:8080 ncuser@10.191.44.101**
 
 The following commands should be run in the different computers 
 
-**sudo docker run --rm   --name flower-client-1   --add-host=host.docker.internal:host-gateway   flower-app:latest   python client_app.py 0 host.docker.internal**
+Client 1:
 
-**sudo docker run --rm   --name flower-client-2   --add-host=host.docker.internal:host-gateway   flower-app:latest   python client_app.py 0 host.docker.internal**
+**sudo docker run --rm --net=flower-net --name flower-client-1 flower-app:latest python client_app.py 0 100.115.119.86**
 
-**sudo docker run --rm   --name flower-client-3   --add-host=host.docker.internal:host-gateway   flower-app:latest   python client_app.py 0 host.docker.internal**
+Client 2:
 
-The following command is the command that is used to let this port tcp to be used
+**sudo docker run --rm --net=flower-net --name flower-client-2 flower-app:latest python client_app.py 0 100.115.119.86**
 
-**sudo ufw allow 8080/tcp**
+Client 3:
+
+**sudo docker run --rm --net=flower-net --name flower-client-3 flower-app:latest python client_app.py 0 100.115.119.86**
