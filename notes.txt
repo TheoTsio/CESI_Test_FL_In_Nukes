@@ -18,3 +18,4 @@ sudo ufw allow 8080/tcp
 sudo pacman -Syu tailscale
 sudo systemctl enable --now tailscaled
 sudo tailscale up
+tailscale ip -4
