@@ -14,3 +14,7 @@ ssh -N -L 0.0.0.0:8080:127.0.0.1:8080 ncuser@10.191.44.101
 sudo docker run --rm   --name flower-client-0   --add-host=host.docker.internal:host-gateway   flower-app:latest   python client_app.py 0 host.docker.internal
 
 sudo ufw allow 8080/tcp
+
+sudo pacman -Syu tailscale
+sudo systemctl enable --now tailscaled
+sudo tailscale up
