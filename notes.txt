@@ -19,3 +19,9 @@ sudo pacman -Syu tailscale
 sudo systemctl enable --now tailscaled
 sudo tailscale up
 tailscale ip -4
+
+
+sudo docker run --rm \
+  --name flower-client-1 \
+  flower-app:latest \
+  python client_app.py 0 100.115.119.86
