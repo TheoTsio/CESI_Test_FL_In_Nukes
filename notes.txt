@@ -26,5 +26,6 @@ sudo docker run --rm \
   flower-app:latest \
   python client_app.py 0 100.115.119.86
 
-
-sudo iptables -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+sudo docker network rm flower-net
+sudo docker network create --driver bridge -o "com.docker.network.driver.mtu=1280" flower-net
+sudo docker run --rm --net=flower-net --name flower-client-2 flower-app:latest python client_app.py 0 100.115.119.86
