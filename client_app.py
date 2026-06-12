@@ -115,17 +115,21 @@ class FlowerClient(fl.client.NumPyClient):
 
 # --- 3. Start Client ---
 if __name__ == "__main__":
-    # 1. YOUR code reads the terminal input (e.g., sys.argv[1] which might be 0)
+    # 1. Read the partition ID (Argument index 1)
     partition_id = int(sys.argv[1]) if len(sys.argv) > 1 else 0
     
+    # ✅ FIX: Put this line back to read the Server IP (Argument index 2)
+    server_ip = sys.argv[2] if len(sys.argv) > 2 else "flower-server" 
+    
+    # Load data partitions based on the ID
     train_pool, test_pool = load_data(partition_id=partition_id, num_partitions=3)
 
-    # 2. YOUR code instantiates the object and physically passes the variable inside
+    # 2. Instantiate the FlowerClient object with the partition ID
     my_client_instance = FlowerClient(train_pool, test_pool, partition_id=partition_id)
 
-    # 3. YOUR code gives the already-created object to Flower
+    # 3. Connect to the server using the dynamically found IP
+    print(f"🚀 Starting PyTorch Client (Partition: {partition_id}) connecting to {server_ip}:8080")
     fl.client.start_numpy_client(
         server_address=f"{server_ip}:8080",
         client=my_client_instance
     )
-    
