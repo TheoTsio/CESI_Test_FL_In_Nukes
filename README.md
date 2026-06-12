@@ -51,8 +51,11 @@ If you want to update the code with the new changes
 If you want to upload your local code to the github repo 
 
 **git init**
+
 **git add .** 
+
 **git commit -m "message"**
+
 **git push**
 
 
