@@ -48,12 +48,12 @@ The following commands should be run in the different computers the ip in the la
 
 Client 1:
 
-**sudo docker run --rm --net=flower-net --name flower-client-1 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 0 100.115.119.86**
+**sudo docker run --rm --net=flower-net --name flower-client-1 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 1 100.115.119.86**
 
 Client 2:
 
-**sudo docker run --rm --net=flower-net --name flower-client-2 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 0 100.115.119.86**
+**sudo docker run --rm --net=flower-net --name flower-client-2 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 2 100.115.119.86**
 
 Client 3:
 
-**sudo docker run --rm --net=flower-net --name flower-client-3 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 0 100.115.119.86**
+**sudo docker run --rm --net=flower-net --name flower-client-3 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 3 100.115.119.86**

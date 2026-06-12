@@ -1,6 +1,7 @@
 # --- CodeCarbon Logs & Metrics ---
 # Block all CSV files generated in any metrics directory
 **/metrics*/
+**/metrics_*/
 *.csv
 
 # --- Python Environment & Caches ---
