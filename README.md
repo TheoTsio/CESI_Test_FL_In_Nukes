@@ -42,18 +42,22 @@ With the following command you can see the ip
 
 The following command is to run the server. In the server computer.
 
-**docker run --rm --name flower-server   --network flower-net   -p 8080:8080   --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes/metrics:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes/metrics   flower-app:latest python server_app.py**
+**docker run --rm --name flower-server   --network flower-net   -p 8080:8080   --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes   flower-app:latest python server_app.py**
 
 The following commands should be run in the different computers the ip in the last part of each command should change to the ip of the server. Hit the command tailscale in the server take the ip and change it here.
 
 Client 1:
 
-**sudo docker run --rm --net=flower-net --name flower-client-1 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes/metrics:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes/metrics flower-app:latest python client_app.py 0 100.115.119.86**
+**sudo docker run --rm --net=flower-net --name flower-client-1 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 0 100.115.119.86**
 
 Client 2:
 
-**sudo docker run --rm --net=flower-net --name flower-client-2 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes/metrics:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes/metrics flower-app:latest python client_app.py 0 100.115.119.86**
+**sudo docker run --rm --net=flower-net --name flower-client-2 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 0 100.115.119.86**
 
 Client 3:
 
+<<<<<<< HEAD
 **sudo docker run --rm --net=flower-net --name flower-client-3 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes/:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes/ flower-app:latest python client_app.py 0 100.115.119.86**
+=======
+**sudo docker run --rm --net=flower-net --name flower-client-3 --privileged   -v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes flower-app:latest python client_app.py 0 100.115.119.86**
+>>>>>>> dddd08babec11c059e55aee56b4f3ab1f507954f
