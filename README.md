@@ -38,6 +38,25 @@ With the following command you can see the ip
 **tailscale ip -4**
 
 -----------------------------------------
+### Commands for git
+
+If you want to get the code to your computer at first you need to clone
+
+**git clone <ssh or https link of the folder>**
+
+If you want to update the code with the new changes 
+
+**git pull**
+
+If you want to upload your local code to the github repo 
+
+**git init**
+**git add .** 
+**git commit -m "message"**
+**git push**
+
+
+-----------------------------------------
 ### Commands to run the server and clients
 
 The following command is to run the server. In the server computer.
