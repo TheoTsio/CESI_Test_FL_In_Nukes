@@ -1,7 +1,7 @@
 import warnings
 import flwr as fl
 from flwr.server.strategy import FedAvg
-from codecarbon import EmissionsTracker  # 1. Import CodeCarbon
+from codecarbon import OfflineEmissionsTracker, EmissionsTracker  # 1. Import CodeCarbon
 import os
 
 # Suppress the deprecation warning since we are using the classic start function
@@ -27,15 +27,19 @@ class FederatedServer:
         
         
         # Define the output path and create the directory explicitly
-        output_dir = "./metrics"
+        output_dir = "/home/ncuser/Desktop/CESI_Test_FL_In_Nukes/metrics_server"
         os.makedirs(output_dir, exist_ok=True)  # Creates the folder if it doesn't exist
         
+
         tracker_config = {
             "project_name": "flower_federated_server",
             "output_dir": output_dir,
+            "output_file": "emissions_server.csv",
+            "country_iso_code": "FRA",
+            "tracking_mode": "process"     # 👈 Fallback tracking mode for strict environments
         }
 
-        with EmissionsTracker(**tracker_config):
+        with OfflineEmissionsTracker(**tracker_config):
             # This function blocks and keeps the server running
             fl.server.start_server(
                 server_address="0.0.0.0:8080",

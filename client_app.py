@@ -7,12 +7,13 @@ from collections import OrderedDict
 import numpy as np
 import flwr as fl
 from task import load_data
+from codecarbon import EmissionsTracker, OfflineEmissionsTracker  # 1. Import CodeCarbon
+import os
 
 # --- 1. Simple Neural Network (Now accepts num_features dynamically) ---
 class SimpleNet(nn.Module):
     def __init__(self, num_features):
         super(SimpleNet, self).__init__()
-        # ✅ FIX: Use the actual number of features from the dataset
         self.fc1 = nn.Linear(num_features, 16) 
         self.fc2 = nn.Linear(16, 2)  
 
@@ -61,19 +62,38 @@ class FlowerClient(fl.client.NumPyClient):
         self.model.load_state_dict(state_dict, strict=True)
 
     def fit(self, parameters, config):
-        self.set_parameters(parameters)
-        self.model.train()
+        # Extract the current round number sent by the Flower server
+        current_round = config.get("server_round", 0)
         
-        for batch_X, batch_y in self.train_loader:
-            batch_X, batch_y = batch_X.to(self.device), batch_y.to(self.device)
-            self.optimizer.zero_grad()
-            outputs = self.model(batch_X)
-            loss = self.criterion(outputs, batch_y)
-            loss.backward()
-            self.optimizer.step()
+        # ✅ FIX: Creating a unique path dynamically matching your style
+        output_dir = f"/home/ncuser/Desktop/CESI_Test_FL_In_Nukes/metrics_{self.partition_id}"
+        os.makedirs(output_dir, exist_ok=True)  
+
+        # ✅ FIX: Combined and cleaned the config dictionary
+        tracker_config = {
+            "project_name": f"flower_client_{self.partition_id}_round_{current_round}",
+            "output_dir": output_dir,
+            "output_file": f"emissions_client_{self.partition_id}.csv",  # Keeps client logs unique
+            "country_iso_code": "FRA",
+            "tracking_mode": "process"     
+        }
+
+        print(f"🌱 [Client {self.partition_id}] Starting local training for Round {current_round}...")
+
+        with OfflineEmissionsTracker(**tracker_config):
+            self.set_parameters(parameters)
+            self.model.train()
+            
+            for batch_X, batch_y in self.train_loader:
+                batch_X, batch_y = batch_X.to(self.device), batch_y.to(self.device)
+                self.optimizer.zero_grad()
+                outputs = self.model(batch_X)
+                loss = self.criterion(outputs, batch_y)
+                loss.backward()
+                self.optimizer.step()
             
         return self.get_parameters(config={}), len(self.train_loader.dataset), {"loss": loss.item()}
-
+    
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
         self.model.eval()
