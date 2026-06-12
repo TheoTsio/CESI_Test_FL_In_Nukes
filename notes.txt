@@ -1,5 +1,17 @@
+NEW COMPUTER ARCH
+sudo usermod -aG docker $USER
+newgrp docker
+docker build -t flower-app:latest .
+
+
+GENERALL
+sudo systemctl status docker
+sudo systemctl start docker
+
+
 docker build -t flower-app:latest
 
+<<<<<<< Updated upstream
 If an error happens that says the docker daemon is deactivated or that cannot find a running docker you run:
 sudo systemctl status docker 
 and if it says deactivate you run 
@@ -36,3 +48,12 @@ sudo docker run --rm \
   --net=flower-net \
   --name flower-client-2 \
   flower-app:latest python client_app.py 0 100.115.119.86
+=======
+docker network create flower-net
+SOS: When you run containers in Docker, they are completely sandboxed from the outside world and from each other. Think of them as separate apartments in a massive building. By creating flower-net, you are essentially building a private hallway between those specific apartments so the tenants can talk to each other without having to go out into the public street.
+
+docker run --rm   --name flower-server   --network flower-net   -p 8080:8080   flower-app:latest   python server_app.py
+
+docker run --rm   --name flower-client-0   --network flower-net   flower-app:latest   python client_app.py 0 flower-server
+docker run --rm   --name flower-client-1   --network flower-net   flower-app:latest   python client_app.py 1 flower-server
+>>>>>>> Stashed changes

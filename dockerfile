@@ -17,7 +17,8 @@ RUN pip install --no-cache-dir \
     scikit-learn==1.5.2 \
     click==8.1.7 \
     torch==2.4.1 \
-    torchvision==0.19.1
+    torchvision==0.19.1 \
+    codecarbon==2.8.2
 
 # Copy your local application scripts into the container
 COPY task.py server_app.py client_app.py ./
