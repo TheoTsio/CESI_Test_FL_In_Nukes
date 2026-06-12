@@ -24,9 +24,10 @@ class SimpleNet(nn.Module):
 
 # --- 2. Flower Client ---
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, train_pool, test_pool):
+    def __init__(self, train_pool, test_pool, partition_id):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        
+        self.partition_id = partition_id
+
         # ✅ FIX: Dynamically get the number of features from the CatBoost Pool
         num_features = train_pool.get_features().shape[1]
         print(f"📊 Detected {num_features} features in dataset.")
