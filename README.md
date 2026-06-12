@@ -37,6 +37,10 @@ With the following command you can see the ip
 
 **tailscale ip -4**
 
+If you want to connect from another account in talescale use the command
+
+**tailscale login**
+
 -----------------------------------------
 ### Commands for git
 
