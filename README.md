@@ -12,7 +12,7 @@ failed to connect to the docker API at unix:///var/run/docker.sock; check if the
 
 and if it says deactivate you run 
 
-**sudo sustemctl start docker** 
+**sudo systemctl start docker** 
 
 After that try to create the docker image again
 
