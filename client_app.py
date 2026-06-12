@@ -79,7 +79,7 @@ class FlowerClient(fl.client.NumPyClient):
             "tracking_mode": "process"     
         }
 
-        print(f"🌱 [Client {self.partition_id}] Starting local training for Round {current_round}...")
+        print(f"🌱 [Client {self.partition_id}]")
 
         with OfflineEmissionsTracker(**tracker_config):
             self.set_parameters(parameters)

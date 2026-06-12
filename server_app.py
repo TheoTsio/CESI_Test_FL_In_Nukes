@@ -7,6 +7,11 @@ import os
 # Suppress the deprecation warning since we are using the classic start function
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+# 1. Create a function that captures the server round
+def fit_config(server_round: int):
+    """Return training configuration dict with the current round."""
+    return {"server_round": server_round}
+
 class FederatedServer:
     def __init__(self, num_rounds: int = 3, min_clients: int = 3):
         self.num_rounds = num_rounds
@@ -21,6 +26,7 @@ class FederatedServer:
             min_fit_clients=self.min_clients,
             min_evaluate_clients=self.min_clients,
             min_available_clients=self.min_clients,
+            on_fit_config_fn=fit_config,
         )
         
         print("🌐 Starting Flower server on 0.0.0.0:8080... (Waiting for clients)")
