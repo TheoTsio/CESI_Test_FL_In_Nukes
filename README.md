@@ -4,7 +4,9 @@
 
 **docker build -t flower-app:latest .**
 
-If an error happens that says the docker daemon is deactivated or that cannot find a running docker you run:
+If an error happens that says the docker daemon is deactivated or that cannot find a running docker you run (-v /home/ncuser/Desktop/CESI_Test_FL_In_Nukes/:/home/ncuser/Desktop/CESI_Test_FL_In_Nukes/ flower-app:latest python client_app.py 2 100.115.119.86
+failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory
+):
 
 **sudo systemctl status docker** 
 
