@@ -1,0 +1,18 @@
+# --- CodeCarbon Logs & Metrics ---
+# Block all CSV files generated in any metrics directory
+**/metrics*/
+*.csv
+
+# --- Python Environment & Caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv
+venv/
+ENV/
+env/
+
+# --- Operating System Files ---
+.DS_Store
+Thumbs.db
